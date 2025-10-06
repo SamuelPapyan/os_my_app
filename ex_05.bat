@@ -1,0 +1,4 @@
+set number=%1
+set /a remainder=%number% %% 2
+if %remainder%==0 echo Zuyg
+if %remainder%==1 echo Kent
