@@ -5,23 +5,27 @@ setlocal
 set file=%1
 
 :moveback
-cd ..
 set directory=
 for %%i in (%CD%) do (
     set directory=%%i
 )
-echo %directory%
+set file = %CD%\%1
 
 if %directory% == C:\ (
-    goto :end
+    goto :badend
 )
+
 if exist %file% (
-    echo "File is in %directory%"
+    echo File is in %directory%
+    goto :end
 ) else (
+    cd ..
     goto :moveback
 )
 
+:badend
+echo There is no file %file% in the filesystem
+
 :end
-echo "There is no file %file% in the filesystem"
 
 endlocal
