@@ -1,30 +1,31 @@
- Volume in drive C is MASTERDRIVE
- Volume Serial Number is B48E-73EE
+ Volume in drive C has no label.
+ Volume Serial Number is F0E9-C078
 
- Directory of C:\my_app
+ Directory of C:\Users\User\Desktop\os_my_app
 
-10/02/2025  04:20 PM    <DIR>          .
-10/02/2025  04:20 PM    <DIR>          ..
-09/29/2025  12:14 PM                 0 bakatron
-10/02/2025  04:20 PM                25 cmd.bat
-09/28/2025  11:57 PM                18 ex_01.bat
-09/29/2025  12:03 AM                61 ex_02.bat
-09/29/2025  12:11 AM                84 ex_03.bat
-09/29/2025  12:16 AM                32 ex_04.bat
-09/29/2025  12:53 AM               103 ex_05.bat
-09/29/2025  12:03 PM               180 ex_06.bat
-09/29/2025  12:09 PM                85 ex_07.bat
-09/29/2025  12:14 PM                13 ex_08.bat
-09/29/2025  12:15 PM                 6 ex_09.bat
-09/29/2025  12:29 PM               239 ex_10.bat
-09/29/2025  12:34 PM               152 ex_11.bat
-09/29/2025  12:36 PM                21 ex_12.bat
-10/02/2025  08:38 AM               661 ex_13.bat
-10/02/2025  02:10 PM               433 ex_14.bat
-10/02/2025  02:25 PM               297 ex_15.bat
-10/02/2025  04:20 PM                 0 list.txt
-10/02/2025  08:46 AM                 0 sandbox.bat
-10/02/2025  02:11 PM    <DIR>          x
-10/02/2025  08:38 AM    <DIR>          y
-              19 File(s)          2,410 bytes
-               4 Dir(s)  458,178,965,504 bytes free
+10/09/2025  02:33 PM    <DIR>          .
+10/09/2025  02:32 PM    <DIR>          ..
+10/09/2025  02:32 PM                 0 bakatron
+10/09/2025  02:32 PM                25 cmd.bat
+10/09/2025  02:32 PM                18 ex_01.bat
+10/09/2025  02:32 PM                61 ex_02.bat
+10/09/2025  02:32 PM                84 ex_03.bat
+10/09/2025  02:32 PM                32 ex_04.bat
+10/09/2025  02:32 PM               103 ex_05.bat
+10/09/2025  02:32 PM               180 ex_06.bat
+10/09/2025  02:32 PM                85 ex_07.bat
+10/09/2025  02:32 PM                13 ex_08.bat
+10/09/2025  02:32 PM                 6 ex_09.bat
+10/09/2025  02:32 PM               239 ex_10.bat
+10/09/2025  02:32 PM               152 ex_11.bat
+10/09/2025  02:32 PM                21 ex_12.bat
+10/09/2025  02:32 PM               661 ex_13.bat
+10/09/2025  02:32 PM               433 ex_14.bat
+10/09/2025  02:32 PM               297 ex_15.bat
+10/09/2025  02:33 PM                 0 list.txt
+10/09/2025  02:32 PM                52 sandbox.bat
+10/09/2025  02:32 PM               152 test.bat
+10/09/2025  02:32 PM    <DIR>          x
+10/09/2025  02:32 PM    <DIR>          y
+              20 File(s)          2,614 bytes
+               4 Dir(s)  434,739,666,944 bytes free
