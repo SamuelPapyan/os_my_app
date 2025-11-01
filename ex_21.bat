@@ -45,3 +45,5 @@ echo %~1 %% %~2 = %res%
 goto :eof
 
 endlocal
+
+pause

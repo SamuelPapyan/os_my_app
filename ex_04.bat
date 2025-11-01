@@ -1,2 +1,6 @@
+@echo off
 set /A sum = %1 + %2
-echo %sum%
+set /A mul = %1 * %2
+echo Sum = %sum%
+echo Multiplication = %mul%
+pause

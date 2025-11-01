@@ -15,5 +15,7 @@ goto :eof
 
 :sum
 set /a result=%1 + %2
-echo %1 + %2 = %result%
+echo %~1 + %~2 = %result%
 goto :eof
+
+pause

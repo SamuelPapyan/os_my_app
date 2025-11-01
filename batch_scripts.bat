@@ -1,0 +1,377 @@
+ex_01.bat 
+ 
+ 
+echo "Hello World" 
+ 
+ex_02.bat 
+ 
+ 
+cls
+set /p name=Your name:
+echo Hello, %name%. How are you? 
+ 
+ex_03.bat 
+ 
+ 
+:loop
+set /p name=Your name
+echo Hello %name%
+
+if %name% NEQ quit goto loop
+
+  
+ 
+ex_04.bat 
+ 
+ 
+set /A sum = %1 + %2
+echo %sum% 
+ 
+ex_05.bat 
+ 
+ 
+set number=%1
+set /a remainder=%number% %% 2
+if %remainder%==0 echo Zuyg
+if %remainder%==1 echo Kent 
+ 
+ex_06.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set n=%1
+
+set /a fact=1
+
+for /l %%i in (1,1,%n%) do (
+	set /a fact=!fact! * %%i
+)
+
+echo Factorial lo %n% is !fact!
+
+endlocal 
+ 
+ex_07.bat 
+ 
+ 
+set name = %1
+set /A age = %2
+
+if %age% GEQ 18 echo Dear %1. You are adult/a minor 
+ 
+ex_08.bat 
+ 
+ 
+type nul > %1 
+ 
+ex_09.bat 
+ 
+ 
+dir %1 
+ 
+ex_10.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /p folder=Enter folder path:
+
+set /p prefix=Enter prefix:
+
+cd /d "%folder%"
+
+for %%f in (*.*) do (
+	ren "%%f" "%prefix%%%f"
+)
+
+echo Done! All files renames with prefix "%prefix%". 
+ 
+ex_11.bat 
+ 
+ 
+::@echo off
+set /p source_folder=Source folder:
+set /p dest_folder=Destination folder:
+
+md "%dest_folder%"
+copy "%source_folder%\*" "%dest_folder%" 
+ 
+ex_12.bat 
+ 
+ 
+@echo off
+del "*.%1" 
+ 
+ex_13.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /p src=Enter source folder path:
+
+set /p dst=Enter destination folder path:
+
+for /f "tokens=1-4 delims=/ " %%a in ('date /t') do (
+	set d1=%%a
+	set d2=%%b
+	set d3=%%c
+	set d4=%%d
+)
+
+for /f "tokens=1-2 delims=: " %%h in ('time /t') do (
+	set hh=%%h
+	set mm=%%i
+)
+
+set Min=%mm%
+set YYYY=%d4%
+set MM=%d2%
+set DD=%d3%
+set HH=%hh%
+
+
+set timestamp=%YYYY%-%MM%-%DD%_%HH%-%Min%
+
+for %%F in (%src%) do set folderName=%%~nxF
+
+set newFolder=%folderName%_%timestamp%
+
+md "%dst%\%newFolder%"
+
+xcopy "%src%" "%dst%\%newFolder%\" /E /I /H /Y
+
+echo Done! Copied "%src%" to "%dst%\%newFolder%"
+ 
+ 
+ex_14.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /p base=Enter Base folder path:
+
+set folders[0]=x
+set folders[1]=y
+set folders[2]=z
+set folders[3]=i
+set folders[4]=j
+
+set count=4
+
+echo Checking folders inside %base% ...
+for /L %%i in (0, 1, %count%) do (
+    set name=!folders[%%i]!
+    if exist "%base%\!name!" (
+        echo FOUND: !name!
+    ) else (
+        echo NOT FOUND: !name!
+    )
+)
+
+echo.
+echo Done! 
+ 
+ex_15.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /p colors=Enter the colors: 
+
+echo your favorite colors are:
+for %%i in (%colors%) do (
+    echo %%i
+)
+
+endlocal 
+ 
+ex_16.bat 
+ 
+ 
+@echo off
+setlocal
+
+set folder=%1
+set file=%2
+type nul > %file%
+for %%i in ("%folder%\*.txt") do (
+    echo %%i >> %file%
+    type %%i >> %file%
+    echo. >> %file%
+    echo. >> %file%
+)
+
+endlocal 
+ 
+ex_17.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /A number=%1
+set file=%2
+
+type nul > %file%
+for /L %%i in (1,1,10) do (
+    set /A result= !number! * %%i
+    echo !number! * %%i = !result! >> %file%
+)
+
+endlocal 
+ 
+ex_18.bat 
+ 
+ 
+@echo off
+
+setlocal
+
+set file=%1
+
+:moveback
+set directory=
+for %%i in (%CD%) do (
+    set directory=%%i
+)
+set file = %CD%\%1
+
+if %directory% == C:\ (
+    goto :badend
+)
+
+if exist %file% (
+    echo File is in %directory%
+    goto :end
+) else (
+    cd ..
+    goto :moveback
+)
+
+:badend
+echo There is no file %file% in the filesystem
+
+:end
+
+endlocal 
+ 
+ex_19.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /P prompt=Enter your number: 
+set /A number=%prompt%
+
+call :Square %number%
+exit /B %ERRORLEVEL%
+
+:Square
+set /A num = %~1
+set /A sqr = %num% * %num%
+echo %sqr%
+exit /B 0
+
+
+endlocal
+ 
+ 
+ex_20.bat 
+ 
+ 
+@echo off
+setlocal enabledelayedexpansion
+
+set /p numbers=Enter your number sequence: 
+
+set prev=
+
+for %%n in (%numbers%) do (
+    if defined prev (
+        call :sum !prev! %%n
+    )
+    set "prev=%%n"
+)
+goto :eof
+
+:sum
+set /a result=%1 + %2
+echo %1 + %2 = %result%
+goto :eof 
+ 
+ex_21.bat 
+ 
+ 
+@echo off
+
+setlocal enabledelayedexpansion
+
+set /p numbers=Enter your number sequence: 
+
+set prev=
+for %%i in (%numbers%) do (
+    if defined prev (
+        echo !prev! and %%i
+        call :sum !prev! %%i
+        call :hanum !prev! %%i
+        call :mul !prev! %%i
+        call :divide !prev! %%i
+        call :mod2 !prev! %%i
+        echo =====================
+    )
+    set prev=%%i
+)
+goto :eof
+
+:sum
+set /A res=%~1 + %~2
+echo %~1 + %~2 = %res%
+goto :eof
+
+:hanum
+set /A res=%~1 - %~2
+echo %~1 - %~2 = %res%
+goto :eof
+
+:mul
+set /A res=%~1 * %~2
+echo %~1 * %~2 = %res%
+goto :eof
+
+:divide
+set /A res=%~1 / %~2
+echo %~1 / %~2 = %res%
+goto :eof
+
+:mod2
+set /A res=%~1 %% %~2
+echo %~1 %% %~2 = %res%
+goto :eof
+
+endlocal 
+ 
+ex_22.bat 
+ 
+ 
+@echo off
+
+setlocal
+
+set /p file=Enter your file name: 
+call :folderList %file%
+goto :eof
+
+
+:folderList
+dir /b /ad > %~1 
+goto :eof
+
+endlocal 
+ 

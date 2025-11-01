@@ -1,17 +1,17 @@
 @echo off
-setlocal enabledelayedexpansion
-
-set /P prompt=Enter your number: 
-set /A number=%prompt%
-
-call :Square %number%
-exit /B %ERRORLEVEL%
+setlocal
+:loop
+set /P num=Enter your number: 
+if "%num%"=="q" goto end
+call :Square %num%
+goto loop
 
 :Square
-set /A num = %~1
-set /A sqr = %num% * %num%
+set /A sqr = %~1 * %~1
 echo %sqr%
-exit /B 0
+exit /b
 
+:end
 
 endlocal
+pause

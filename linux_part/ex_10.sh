@@ -1,1 +1,3 @@
-echo "$1 % $2 = $(($1 % $2))"
+read -p "a = " a
+read -p "b = " b
+echo "a % b = $(($a % $b))"

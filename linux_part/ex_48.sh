@@ -1,3 +1,1 @@
-if [ -z "$1" ]; then
-	echo "Variable is null" >&2
-fi
+: ${1:?"Variable not set!"}

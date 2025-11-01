@@ -1,5 +1,7 @@
-if [ $1 -lt $2 ]; then
-	echo "$1 < $2"
+read -p "a = " a
+read -p "b = " b
+if [ $a -lt $b ]; then
+	echo "$a < $b"
 else
-	echo "$1 >= $2"
+	echo "$a >= $b"
 fi

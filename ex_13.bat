@@ -1,37 +1,13 @@
 @echo off
-setlocal enabledelayedexpansion
+set /p src=Enter source folder: 
+set /p dest=Enter destination folder: 
 
-set /p src=Enter source folder path:
-
-set /p dst=Enter destination folder path:
-
-for /f "tokens=1-4 delims=/ " %%a in ('date /t') do (
-	set d1=%%a
-	set d2=%%b
-	set d3=%%c
-	set d4=%%d
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do (
+    for /f "tokens=1-3 delims=: " %%x in ("%time%") do (
+        set foldername=%src%_%%a-%%b-%%c_%%x%%y%%z
+    )
 )
-
-for /f "tokens=1-2 delims=: " %%h in ('time /t') do (
-	set hh=%%h
-	set mm=%%i
-)
-
-set Min=%mm%
-set YYYY=%d4%
-set MM=%d2%
-set DD=%d3%
-set HH=%hh%
-
-
-set timestamp=%YYYY%-%MM%-%DD%_%HH%-%Min%
-
-for %%F in (%src%) do set folderName=%%~nxF
-
-set newFolder=%folderName%_%timestamp%
-
-md "%dst%\%newFolder%"
-
-xcopy "%src%" "%dst%\%newFolder%\" /E /I /H /Y
-
-echo Done! Copied "%src%" to "%dst%\%newFolder%"
+set foldername=%foldername::=-%
+xcopy "%src%\*" "%dest%\%foldername%\" /s /i
+echo Folder copied as %foldername%
+pause

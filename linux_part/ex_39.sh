@@ -1,1 +1,1 @@
-echo -e "Hello World Of \nIT \c"
+echo -e "Hello World Of IT \c"

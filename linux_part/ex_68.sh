@@ -1,2 +1,2 @@
-export X=28
+export PATH="$PATH:/my/bin"
 env

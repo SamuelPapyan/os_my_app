@@ -1,8 +1,7 @@
 @echo off
 setlocal
-
-set folder=%1
-set file=%2
+set /p folder=Enter folder name: 
+set /p file=Enter output file: 
 type nul > %file%
 for %%i in ("%folder%\*.txt") do (
     echo %%i >> %file%
@@ -10,5 +9,5 @@ for %%i in ("%folder%\*.txt") do (
     echo. >> %file%
     echo. >> %file%
 )
-
 endlocal
+pause

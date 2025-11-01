@@ -1,4 +1,10 @@
-set name = %1
-set /A age = %2
+@echo off
+set /P name="What's your name? "
+set /P age="How old are you? "
 
-if %age% GEQ 18 echo Dear %1. You are adult/a minor
+if %age% GEQ 18 (
+    echo Dear %name%. You are adult.
+) else (
+    echo Dear %name%. You are minor.
+)
+pause

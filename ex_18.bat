@@ -2,7 +2,7 @@
 
 setlocal
 
-set file=%1
+set /p file=Enter filename: 
 
 :moveback
 set directory=

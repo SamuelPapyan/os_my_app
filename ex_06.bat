@@ -1,14 +1,10 @@
 @echo off
-setlocal enabledelayedexpansion
 
-set n=%1
-
+set /p num="Enter a value: "
 set /a fact=1
-
-for /l %%i in (1,1,%n%) do (
-	set /a fact=!fact! * %%i
+for /l %%i in (1,1,%num%) do (
+	set /a fact*=%%i
 )
+echo Factorial of %n% is %fact%
 
-echo Factorial lo %n% is !fact!
-
-endlocal
+pause

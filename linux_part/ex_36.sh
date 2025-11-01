@@ -1,1 +1,1 @@
-echo -e "\n$1"
+echo -e "Hello\nworld"

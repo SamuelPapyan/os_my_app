@@ -8,7 +8,10 @@ goto :eof
 
 
 :folderList
-dir /b /ad > %~1 
+type nul > %~1
+for /d %%f in (*) do echo %%f >> "%~1"
 goto :eof
 
 endlocal
+
+pause

@@ -1,4 +1,2 @@
-MY_VAR=fsdf
-if [ -z "$MY_VAR" ]; then
-	echo "THE VARIABLE IS NOT SET"
-fi
+MY_VAR=
+echo "${MY_VAR:-'No value'}"
