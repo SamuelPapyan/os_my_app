@@ -1,204 +1,186 @@
 ex_01.bat 
  
  
-echo "Hello World" 
+@echo off
+echo "Hello World"
+pause 
  
 ex_02.bat 
  
  
+@echo off
 cls
 set /p name=Your name:
-echo Hello, %name%. How are you? 
+echo Hello, %name%. How are you?
+pause 
  
 ex_03.bat 
  
  
+@echo off
 :loop
 set /p name=Your name
 echo Hello %name%
 
 if %name% NEQ quit goto loop
 
-  
+pause 
  
 ex_04.bat 
  
  
+@echo off
 set /A sum = %1 + %2
-echo %sum% 
+set /A mul = %1 * %2
+echo Sum = %sum%
+echo Multiplication = %mul%
+pause 
  
 ex_05.bat 
  
  
-set number=%1
+@echo off
+set /p number="Number :"
 set /a remainder=%number% %% 2
 if %remainder%==0 echo Zuyg
-if %remainder%==1 echo Kent 
+if %remainder%==1 echo Kent
+pause 
  
 ex_06.bat 
  
  
 @echo off
-setlocal enabledelayedexpansion
 
-set n=%1
-
+set /p num="Enter a value: "
 set /a fact=1
-
-for /l %%i in (1,1,%n%) do (
-	set /a fact=!fact! * %%i
+for /l %%i in (1,1,%num%) do (
+	set /a fact*=%%i
 )
+echo Factorial of %n% is %fact%
 
-echo Factorial lo %n% is !fact!
-
-endlocal 
+pause 
  
 ex_07.bat 
  
  
-set name = %1
-set /A age = %2
+@echo off
+set /P name="What's your name? "
+set /P age="How old are you? "
 
-if %age% GEQ 18 echo Dear %1. You are adult/a minor 
+if %age% GEQ 18 (
+    echo Dear %name%. You are adult.
+) else (
+    echo Dear %name%. You are minor.
+)
+pause 
  
 ex_08.bat 
  
  
-type nul > %1 
+@echo off
+set /P filename="Enter a new file name: "
+type nul > %filename%
+echo Empty file %filename% created successfully
+pause 
  
 ex_09.bat 
  
  
-dir %1 
+@echo off
+set /P dirname="Enter a directory path: "
+dir %dirname%
+pause 
  
 ex_10.bat 
  
  
 @echo off
-setlocal enabledelayedexpansion
-
-set /p folder=Enter folder path:
-
-set /p prefix=Enter prefix:
-
+set /p folder=Enter folder path: 
+set /p prefix=Enter prefix: 
 cd /d "%folder%"
-
-for %%f in (*.*) do (
+for %%f in (*) do (
 	ren "%%f" "%prefix%%%f"
 )
-
-echo Done! All files renames with prefix "%prefix%". 
+echo Done! All files renames with prefix "%prefix%".
+pause 
  
 ex_11.bat 
  
  
-::@echo off
-set /p source_folder=Source folder:
-set /p dest_folder=Destination folder:
+@echo off
+set /p source_folder=Source folder: 
+set /p dest_folder=Destination folder: 
 
 md "%dest_folder%"
-copy "%source_folder%\*" "%dest_folder%" 
+xcopy "%source_folder%\*" "%dest_folder%" /s /i
+echo Files copied successfully
+pause 
  
 ex_12.bat 
  
  
 @echo off
-del "*.%1" 
+set /p folder=Enter folder name: 
+set /p ext=Enter extension:
+del "%folder%\*.%ext%"
+echo All %ext% files deleted.
+pause 
  
 ex_13.bat 
  
  
 @echo off
-setlocal enabledelayedexpansion
+set /p src=Enter source folder: 
+set /p dest=Enter destination folder: 
 
-set /p src=Enter source folder path:
-
-set /p dst=Enter destination folder path:
-
-for /f "tokens=1-4 delims=/ " %%a in ('date /t') do (
-	set d1=%%a
-	set d2=%%b
-	set d3=%%c
-	set d4=%%d
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do (
+    for /f "tokens=1-3 delims=: " %%x in ("%time%") do (
+        set foldername=%src%_%%a-%%b-%%c_%%x%%y%%z
+    )
 )
-
-for /f "tokens=1-2 delims=: " %%h in ('time /t') do (
-	set hh=%%h
-	set mm=%%i
-)
-
-set Min=%mm%
-set YYYY=%d4%
-set MM=%d2%
-set DD=%d3%
-set HH=%hh%
-
-
-set timestamp=%YYYY%-%MM%-%DD%_%HH%-%Min%
-
-for %%F in (%src%) do set folderName=%%~nxF
-
-set newFolder=%folderName%_%timestamp%
-
-md "%dst%\%newFolder%"
-
-xcopy "%src%" "%dst%\%newFolder%\" /E /I /H /Y
-
-echo Done! Copied "%src%" to "%dst%\%newFolder%"
- 
+set foldername=%foldername::=-%
+xcopy "%src%\*" "%dest%\%foldername%\" /s /i
+echo Folder copied as %foldername%
+pause 
  
 ex_14.bat 
  
  
 @echo off
-setlocal enabledelayedexpansion
 
 set /p base=Enter Base folder path:
 
-set folders[0]=x
-set folders[1]=y
-set folders[2]=z
-set folders[3]=i
-set folders[4]=j
-
-set count=4
+set folders=x y z i j
 
 echo Checking folders inside %base% ...
-for /L %%i in (0, 1, %count%) do (
-    set name=!folders[%%i]!
-    if exist "%base%\!name!" (
-        echo FOUND: !name!
+for %%f in (%folders%) do (
+    if exist "%base%\%%f" (
+        echo FOUND: %%f
     ) else (
-        echo NOT FOUND: !name!
+        echo NOT FOUND: %%f
     )
 )
-
 echo.
-echo Done! 
+echo Done!
+pause 
  
 ex_15.bat 
  
  
 @echo off
-setlocal enabledelayedexpansion
-
 set /p colors=Enter the colors: 
-
 echo your favorite colors are:
 for %%i in (%colors%) do (
     echo %%i
-)
-
-endlocal 
+) 
  
 ex_16.bat 
  
  
 @echo off
 setlocal
-
-set folder=%1
-set file=%2
+set /p folder=Enter folder name: 
+set /p file=Enter output file: 
 type nul > %file%
 for %%i in ("%folder%\*.txt") do (
     echo %%i >> %file%
@@ -206,8 +188,8 @@ for %%i in ("%folder%\*.txt") do (
     echo. >> %file%
     echo. >> %file%
 )
-
-endlocal 
+endlocal
+pause 
  
 ex_17.bat 
  
@@ -233,7 +215,7 @@ ex_18.bat
 
 setlocal
 
-set file=%1
+set /p file=Enter filename: 
 
 :moveback
 set directory=
@@ -265,23 +247,22 @@ ex_19.bat
  
  
 @echo off
-setlocal enabledelayedexpansion
-
-set /P prompt=Enter your number: 
-set /A number=%prompt%
-
-call :Square %number%
-exit /B %ERRORLEVEL%
+setlocal
+:loop
+set /P num=Enter your number: 
+if "%num%"=="q" goto end
+call :Square %num%
+goto loop
 
 :Square
-set /A num = %~1
-set /A sqr = %num% * %num%
+set /A sqr = %~1 * %~1
 echo %sqr%
-exit /B 0
+exit /b
 
+:end
 
 endlocal
- 
+pause 
  
 ex_20.bat 
  
@@ -303,8 +284,10 @@ goto :eof
 
 :sum
 set /a result=%1 + %2
-echo %1 + %2 = %result%
-goto :eof 
+echo %~1 + %~2 = %result%
+goto :eof
+
+pause 
  
 ex_21.bat 
  
@@ -355,7 +338,9 @@ set /A res=%~1 %% %~2
 echo %~1 %% %~2 = %res%
 goto :eof
 
-endlocal 
+endlocal
+
+pause 
  
 ex_22.bat 
  
@@ -370,8 +355,11 @@ goto :eof
 
 
 :folderList
-dir /b /ad > %~1 
+type nul > %~1
+for /d %%f in (*) do echo %%f >> "%~1"
 goto :eof
 
-endlocal 
+endlocal
+
+pause 
  
